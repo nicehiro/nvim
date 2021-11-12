@@ -16,7 +16,7 @@ o.scrolloff = 12
 o.timeoutlen = 3000
 o.ttimeoutlen = 100
 o.undodir = '~/.cache/nvim/undodir'
-o.cursorline = false
+o.cursorline = true
 o.foldenable = false
 o.conceallevel = 2
 o.mouse = 'a'
@@ -42,14 +42,14 @@ o.wildignore = [[
 ]]
 
 vim.cmd("syntax on")
--- vim.cmd("colorscheme plain")
+vim.cmd("colorscheme NeoSolarized")
 
 vim.cmd('au TextYankPost * lua vim.highlight.on_yank{timeout=200}')
 o.background = 'dark'
 
 
 -- window-local options
-o.number = false
+o.number = true
 o.list = true
 o.wrap = false
 
@@ -89,3 +89,4 @@ local disabled_built_ins = {
 for i = 1, 8 do
   g['loaded_' .. disabled_built_ins[i]] = 1
 end
+

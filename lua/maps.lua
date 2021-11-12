@@ -20,3 +20,12 @@ cmd(':command! Wq wq')
 cmd(':command! Wqa wqa')
 cmd(':command! W w')
 cmd(':command! Q q')
+
+-- some emacs keybinds
+map('n', '<C-x><C-s>', ':w<CR>', options)
+map('i', '<C-x><C-s>', ':w<CR>', options)
+
+-- source current file
+map('n', '<leader>vs', ':source %<CR>', options)
+-- source a visual range
+map('v', '<leader>vs', 'y:@<CR>', options)
