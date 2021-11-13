@@ -64,6 +64,19 @@ packer.startup({
 
         -- auto pairs
         use 'windwp.nvim-autopairs'
+
+        -- comment
+        use {
+            "terrortylor/nvim-comment",
+            config = require 'plugin.comment'
+        }
+
+        -- bufferline
+        use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+
+        -- git
+        use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+
     end,
 
     config = {

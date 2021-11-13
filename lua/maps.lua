@@ -24,8 +24,20 @@ cmd(':command! Q q')
 -- some emacs keybinds
 map('n', '<C-x><C-s>', ':w<CR>', options)
 map('i', '<C-x><C-s>', ':w<CR>', options)
+map('n', '<C-h>', '<C-w>h', options)
+map('n', '<C-j>', '<C-w>j', options)
+map('n', '<C-k>', '<C-w>k', options)
+map('n', '<C-l>', '<C-w>l', options)
 
 -- source current file
 map('n', '<leader>vs', ':source %<CR>', options)
 -- source a visual range
 map('v', '<leader>vs', 'y:@<CR>', options)
+
+-- auto pairs
+map('i', '(', '()<ESC>i', {})
+map('i', '()', '()<ESC>a', {})
+map('i', '[', '[]<ESC>i', {})
+map('i', '[]', '[]<ESC>a', {})
+map('i', '{', '{}<ESC>i', {})
+map('i', '{}', '{}<ESC>a', {})

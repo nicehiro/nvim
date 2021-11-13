@@ -41,6 +41,11 @@ o.wildignore = [[
 *.swp,.lock,.DS_Store,._*
 ]]
 
+
+-- true color
+o.termguicolors = true
+
+
 vim.cmd("syntax on")
 vim.cmd("colorscheme NeoSolarized")
 
