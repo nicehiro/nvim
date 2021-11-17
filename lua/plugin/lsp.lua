@@ -1,7 +1,7 @@
-local saga = require 'lspsaga'
-local keymap = vim.api.nvim_set_keymap
-
 local nvim_lsp = require('lspconfig')
+local saga = require 'lspsaga'
+local dap = require 'dap-python'
+local keymap = vim.api.nvim_set_keymap
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -17,7 +17,7 @@ local on_attach = function(client, bufnr)
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
@@ -25,7 +25,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  -- buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
@@ -61,7 +61,7 @@ saga.init_lsp_saga()
 
 options = {noremap = true, silent = true}
 -- async lsp finder
--- keymap('n', 'gh', [[<Cmd>lua require('lspsaga.provider').lsp_finder()<CR>]], options)
+keymap('n', 'gh', [[<Cmd>lua require('lspsaga.provider').lsp_finder()<CR>]], options)
 -- -- lsp hover doc
 -- keymap('n', 'K', [[<Cmd>lua require('lspsaga.hover').render_hover_doc()<CR>]], options)
 -- keymap('n', '<C-f>', [[<Cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>]], options)
@@ -69,6 +69,18 @@ options = {noremap = true, silent = true}
 -- -- signature help
 -- keymap('n', 'gs', [[<Cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>]], options)
 -- -- preview definition
--- keymap('n', 'gd', [[<Cmd>lua require('lspsaga.provider').preview_definition()<CR>]], options)
+keymap('n', 'gd', [[<Cmd>lua require('lspsaga.provider').preview_definition()<CR>]], options)
+-- rename
+keymap('n', 'gr', [[<Cmd]lua require('lspsaga.rename').rename()<CR>]], options)
 -- -- float terminal
--- keymap('n', '<A-d>', [[<Cmd>lua require('lspsaga.floaterm'.open_float_terminal()<CR>]], options)
+-- keymap('n', 'gt', [[<Cmd>lua require('lspsaga.floaterm'.open_float_terminal()<CR>]], options)
+-- keymap('n', 'gt', [[<Cmd>lua require('lspsaga.floaterm'.open_float_terminal()<CR>]], options)
+
+
+-- dap python config
+dap.setup('/home/hiro/.dap/bin/python')
+keymap('n', '<f5>', [[<Cmd>lua require('dap').toggle_breakpoint()<CR>]], options)
+keymap('n', '<f6>', [[<Cmd>lua require('dap').continue()<CR>]], options)
+keymap('n', '<f7>', [[<Cmd>lua require('dap').step_over()<CR>]], options)
+keymap('n', '<f8>', [[<Cmd>lua require('dap').step_into()<CR>]], options)
+keymap('n', '<f9>', [[<Cmd>lua require('dap').repl.open()<CR>]], options)

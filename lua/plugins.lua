@@ -18,6 +18,16 @@ packer.startup({
             'glepnir/lspsaga.nvim',
             config = require 'plugin/lsp'
         }
+        use "wbthomason/lsp-status.nvim"
+        -- lsp dap
+        use 'mfussenegger/nvim-dap'
+        use 'mfussenegger/nvim-dap-python'
+
+        -- python black
+        use {
+            'averms/black-nvim',
+            config = require 'plugin/black'
+        }
 
         -- cmp
         use 'hrsh7th/cmp-nvim-lsp'
@@ -47,11 +57,19 @@ packer.startup({
             config = require 'plugin.lualine'
         }
 
+        -- since I only need simple tabline config which lualine can satisfy me
+        -- use {
+        --     'kdheepak/tabline.nvim',
+        --     config = require 'plugin.tabline',
+        --     requires = { { 'hoob3rt/lualine.nvim', opt=true }, {'kyazdani42/nvim-web-devicons', opt = true} }
+        -- }
+
         -- popup window
         use 'nvim-lua/popup.nvim'
 
         -- color theme
         use 'overcache/NeoSolarized'
+        use 'NLKNguyen/papercolor-theme'
 
         -- which key
         use {
@@ -63,7 +81,10 @@ packer.startup({
         }
 
         -- auto pairs
-        use 'windwp.nvim-autopairs'
+        use {
+            '/home/hiro/.config/nvim/local/nvim-autopairs',
+            config = require 'plugin.autopairs'
+        }
 
         -- comment
         use {

@@ -5,6 +5,7 @@ local cmd = vim.cmd
 local u = require('utils')
 
 -- global options
+o.encoding = 'utf-8'
 o.swapfile = true
 o.dir = '/tmp'
 o.smartcase = true
@@ -55,6 +56,7 @@ o.background = 'dark'
 
 -- window-local options
 o.number = true
+o.relativenumber = true
 o.list = true
 o.wrap = false
 
@@ -78,20 +80,4 @@ cmd('au BufNewFile,BufRead * if &ft == "" | set ft=text | endif')
 
 -- filetype.nvim
 g.did_load_filetypes = 1
-
--- disable built-in plugins
-local disabled_built_ins = {
-  'gzip',
-  'man',
-  'shada_plugin',
-  'tarPlugin',
-  'tar',
-  'zipPlugin',
-  'zip',
-  'netrwPlugin',
-}
-
-for i = 1, 8 do
-  g['loaded_' .. disabled_built_ins[i]] = 1
-end
 
